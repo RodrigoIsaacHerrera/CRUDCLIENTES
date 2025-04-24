@@ -18,50 +18,50 @@ import com.tata.duoc.HerreraRodrigo.modelo.IClientesDAO;
 public class RestControlador{
 
 	@Autowired
-	IClientesDAO clientesDAO;
+	IClientesDAO clientsDAO;
 	
-	@GetMapping("/clientes")
+	@GetMapping("/clients")
 	public List<ClientesVO> getAllClients(){
-		return this.clientesDAO.findAll();
+		return this.clientsDAO.findAll();
 	}
-	@GetMapping("/clientes/{rut}")
-	public ClientesVO getClienteById(@PathVariable String rut){
-		return this.clientesDAO.findById(rut).get();
+	@GetMapping("/clients/{rut}")
+	public ClientesVO getClientById(@PathVariable String rut){
+		return this.clientsDAO.findById(rut).get();
 	}
 
-	@GetMapping("/clientes/buscar/{nombre}")
-	public ClientesVO getClienteByName(@PathVariable String nombre){
-	return this.clientesDAO.findByNombres(nombre).orElse(new ClientesVO());
+	@GetMapping("/clients/search/{nombre}")
+	public ClientesVO getClientByName(@PathVariable String nombre){
+	return this.clientsDAO.findByNombres(nombre).orElse(new ClientesVO());
 	}
-	@PostMapping("/clientes")
+	@PostMapping("/clients")
 	public boolean addClient(@RequestBody ClientesVO body) {
 		
 		String rut = body.getRut();
-		if(!this.clientesDAO.existsById(rut) && this.clientesDAO != null) {
-			this.clientesDAO.save(body);
+		if(!this.clientsDAO.existsById(rut) && this.clientsDAO != null) {
+			this.clientsDAO.save(body);
 			return true;
 		}
 		return false;	
 	}
-	@PutMapping("/clientes")
+	@PutMapping("/clients")
 	public boolean modifyClient(@RequestBody ClientesVO body){
 		String rut = body.getRut();
-		if(this.clientesDAO.existsById(rut) && this.clientesDAO != null){
-			this.clientesDAO.save(body);
+		if(this.clientsDAO.existsById(rut) && this.clientsDAO != null){
+			this.clientsDAO.save(body);
 			return true;
 		}
 		return false;
 	}
-	@DeleteMapping("/clientes/{rut}")
-	public boolean deleteCliente(@PathVariable String rut) {
+	@DeleteMapping("/clients/{rut}")
+	public boolean deleteClient(@PathVariable String rut) {
 		
-		if(this.clientesDAO.existsById(rut) && !(rut.equalsIgnoreCase("99999999-9"))) {
-			this.clientesDAO.deleteById(rut);
+		if(this.clientsDAO.existsById(rut) && !(rut.equalsIgnoreCase("99999999-9"))) {
+			this.clientsDAO.deleteById(rut);
 			return true;
-		}else if(rut.equalsIgnoreCase("99999999-9")&& (this.clientesDAO.count()!=0)) {
-			this.clientesDAO.deleteAll();
+		}else if(rut.equalsIgnoreCase("99999999-9")&& (this.clientsDAO.count()!=0)) {
+			this.clientsDAO.deleteAll();
 			return true;
-		}else if (rut.equalsIgnoreCase("99999999-9")&&(this.clientesDAO.count()==0)) {
+		}else if (rut.equalsIgnoreCase("99999999-9")&&(this.clientsDAO.count()==0)) {
 			return false;
 		}else {
 			return false;
