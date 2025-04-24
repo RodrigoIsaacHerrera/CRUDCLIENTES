@@ -37,7 +37,7 @@ public class RestControlador{
 	public boolean addClient(@RequestBody ClientesVO body) {
 		
 		String rut = body.getRut();
-		if(!this.clientesDAO.existsById(rut) && this.clientesDAO != null && rut!=null) {
+		if(!this.clientesDAO.existsById(rut) && this.clientesDAO != null) {
 			this.clientesDAO.save(body);
 			return true;
 		}
