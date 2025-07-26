@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.tata.duoc.HerreraRodrigo.modelo.ClientesVO;
 import com.tata.duoc.HerreraRodrigo.modelo.IClientesDAO;
+
 @RunWith(SpringRunner.class)
 @DataJpaTest
 public class GetClientByIdTest {
@@ -50,7 +51,7 @@ public class GetClientByIdTest {
 	public void whenGetClientByIdcliente1EntoncesNotNull(){
 		
 		String celu = this.clienteDao.findById("12369857-1").get().getCelular();
-		assertTrue("Es "+ celu +" y deberia ser ", celu == "78526495");
+		assertTrue("Es "+ celu +" y deberia ser ", celu.equals("78526495"));
 	}
 
 }

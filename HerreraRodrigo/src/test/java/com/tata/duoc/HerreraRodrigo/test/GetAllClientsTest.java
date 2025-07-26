@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.tata.duoc.HerreraRodrigo.modelo.ClientesVO;
 import com.tata.duoc.HerreraRodrigo.modelo.IClientesDAO;
+
 @RunWith(SpringRunner.class)
 @DataJpaTest
 public class GetAllClientsTest {
@@ -55,8 +56,8 @@ public class GetAllClientsTest {
 	public void cuandoGetAllClientesWithOutDataEntoncesReturnFalse() {
 		
 		this.clientDAO.deleteAll();
-		String validador = (this.clientDAO.findAll().size()==0)? "false":"true";
-		assertTrue("Es "+validador+" y deberia ser false", validador == "false");
+		String validador = (this.clientDAO.findAll().isEmpty())? "false":"true";
+		assertTrue("Es "+validador+" y deberia ser false", validador.equals("false"));
 	}
 
 }
